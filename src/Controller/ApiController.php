@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ApiController extends AbstractController
 {
-    #[Route('/v2/postingStats', methods: ['GET'])]
+    #[Route('/v3/postingStats', methods: ['GET'])]
     #[Cache(public: true, maxage: 60, smaxage: 120)]
     public function getAverageNumberOfWords(Request $request, PostRepository $postRepository): Response
     {
