@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class ApiController extends AbstractController
 {
     #[Route('/v2/postingStats', methods: ['GET'])]
-    #[Cache(public: true, maxage: 3600)]
+    #[Cache(public: true, maxage: 60, smaxage: 120)]
     public function getAverageNumberOfWords(Request $request, PostRepository $postRepository): Response
     {
         $params = $request->query->all();
@@ -29,12 +29,15 @@ class ApiController extends AbstractController
             }
             $average = $totalWords / $totalResult;
         }
-
-        $headers = [
-            'X-RateLimit-Limit' => 20,
-        ];
+        // The following headers could be defined to limit the api call in production
+        // Implement the rate-limiter from symfony
+        /*$headers = [
+            'X-RateLimit-Remaining' => $limit->getRemainingTokens(),
+            'X-RateLimit-Retry-After' => $limit->getRetryAfter()->getTimestamp() - time(),
+            'X-RateLimit-Limit' => $limit->getLimit(),
+        ];*/
         $json = new JsonResponse(['average' => floor($average)]);
-        $json->headers->add($headers);
+        //$json->headers->add($headers);
         return $json;
     }
 }
