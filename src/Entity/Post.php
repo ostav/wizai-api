@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\PostsRepository;
+use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PostsRepository::class)]
-class Posts
+#[ORM\Entity(repositoryClass: PostRepository::class)]
+class Post
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,7 +15,7 @@ class Posts
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
-    private ?Users $user = null;
+    private ?User $user = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -28,12 +28,12 @@ class Posts
         return $this->id;
     }
 
-    public function getUser(): ?Users
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?Users $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

@@ -2,39 +2,39 @@
 
 namespace App\Repository;
 
-use App\Entity\Posts;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Posts>
+ * @extends ServiceEntityRepository<User>
  */
-class PostsRepository extends ServiceEntityRepository
+class UserRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Posts::class);
+        parent::__construct($registry, User::class);
     }
 
     //    /**
-    //     * @return Posts[] Returns an array of Posts objects
+    //     * @return User[] Returns an array of User objects
     //     */
     //    public function findByExampleField($value): array
     //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
+    //        return $this->createQueryBuilder('u')
+    //            ->andWhere('u.exampleField = :val')
     //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
+    //            ->orderBy('u.id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
     //            ->getResult()
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Posts
+    //    public function findOneBySomeField($value): ?User
     //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
+    //        return $this->createQueryBuilder('u')
+    //            ->andWhere('u.exampleField = :val')
     //            ->setParameter('val', $value)
     //            ->getQuery()
     //            ->getOneOrNullResult()
